@@ -46,4 +46,4 @@ services:
       - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=$DOCKER_INFLUXDB_INIT_ADMIN_TOKEN
       - INFLUXDB_URL=$INFLUXDB_URL
     tty: true # to keep container open with tail -f /dev/null
-    #entrypoint: python ./tempmanager/script.py
+    #entrypoint: python ./tempmanager/read_temp-sensor.py

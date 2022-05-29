@@ -2,10 +2,12 @@
 /*/*
 
 !.gitignore
+!README.md
 
 !/setup.sh
 !/setup_raspberry.sh
 !/config_sensor.sh
+!/start.sh
 !/docker-compose.yml
 
 !/.env
