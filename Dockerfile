@@ -34,7 +34,7 @@ ENV PYVERSION=3.9
 
 USER ${USER}
 
-RUN curl -sLo ~/miniconda.sh https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh && \
+RUN curl -sLo ~/miniconda.sh https://repo.anaconda.com/miniconda/Miniconda-latest-Linux-armv7l.sh && \
     chmod +x ~/miniconda.sh
 RUN ~/miniconda.sh -b -p ~/miniconda  && \
     rm ~/miniconda.sh
