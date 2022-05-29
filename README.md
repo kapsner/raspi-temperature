@@ -4,7 +4,7 @@ Setup for a DS1820 temperatur sensor using docker, influxdb and grafana for visu
 
 ## Setup
 
-To connect the temperatur sensor to the rasperry see https://www.kompf.de/weather/pionewiremini.html.
+To connect the temperatur sensor to the rasperry see instructions from [here](https://www.kompf.de/weather/pionewiremini.html).
 
 To perform initial setup of the connected temperatur sensor, run
 
@@ -21,7 +21,7 @@ config_sensor.sh
 To create the dockerized framework, run
 
 ```bash
-setup.sh
+setup_docker.sh
 ```
 
 Finally, to start everything, run
