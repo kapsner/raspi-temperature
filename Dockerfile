@@ -1,4 +1,4 @@
-FROM ubuntu:22.04
+FROM ubuntu:18.04
 
 # set ENV-Vars
 # set environment variable to supress user interaction
