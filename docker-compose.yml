@@ -1,0 +1,49 @@
+# https://www.blackvoid.club/grafana-8-influxdb-2-telegraf-2021-monitoring-stack/
+version: '3.9'
+
+services:
+  # grafana:
+  #   image: grafana/grafana:8.5.3
+  #   container_name: grafana
+  #   depends_on:
+  #     - influxdb2
+  #   restart: always
+  #   ports:
+  #     - 3000:3000
+  #   volumes:
+  #     - ./grafana-volume:/var/lib/grafana
+  
+  influxdb2:
+    image: influxdb:2.2.0
+    container_name: influxdb2
+    ports:
+      - "8086:8086"
+    volumes:
+      - ./influxdb-volume/data:/var/lib/influxdb2
+      - ./influxdb-volume/config:/etc/influxdb2
+    environment:
+      - DOCKER_INFLUXDB_INIT_MODE=$DOCKER_INFLUXDB_INIT_MODE
+      - DOCKER_INFLUXDB_INIT_USERNAME=$DOCKER_INFLUXDB_INIT_USERNAME
+      - DOCKER_INFLUXDB_INIT_PASSWORD=$DOCKER_INFLUXDB_INIT_PASSWORD
+      - DOCKER_INFLUXDB_INIT_ORG=$DOCKER_INFLUXDB_INIT_ORG
+      - DOCKER_INFLUXDB_INIT_BUCKET=$DOCKER_INFLUXDB_INIT_BUCKET
+      - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=$DOCKER_INFLUXDB_INIT_ADMIN_TOKEN
+    restart: always
+  
+  tempmanager:
+    image: tempmanager:latest
+    container_name: tempmanager
+    depends_on:
+      - influxdb2
+    volumes:
+      - ./tempmanager:/home/user/tempmanager:ro
+    environment:
+      - DOCKER_INFLUXDB_INIT_MODE=$DOCKER_INFLUXDB_INIT_MODE
+      - DOCKER_INFLUXDB_INIT_USERNAME=$DOCKER_INFLUXDB_INIT_USERNAME
+      - DOCKER_INFLUXDB_INIT_PASSWORD=$DOCKER_INFLUXDB_INIT_PASSWORD
+      - DOCKER_INFLUXDB_INIT_ORG=$DOCKER_INFLUXDB_INIT_ORG
+      - DOCKER_INFLUXDB_INIT_BUCKET=$DOCKER_INFLUXDB_INIT_BUCKET
+      - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=$DOCKER_INFLUXDB_INIT_ADMIN_TOKEN
+      - INFLUXDB_URL=$INFLUXDB_URL
+    tty: true # to keep container open with tail -f /dev/null
+    #entrypoint: python ./tempmanager/script.py

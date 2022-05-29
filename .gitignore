@@ -1,0 +1,17 @@
+/*
+/*/*
+
+!.gitignore
+
+!/setup.sh
+!/setup_raspberry.sh
+!/config_sensor.sh
+!/docker-compose.yml
+
+!/.env
+
+!/Dockerfile
+
+!/grafana-volume
+!/influxdb-volume
+!/tempmanager
