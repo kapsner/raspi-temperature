@@ -5,32 +5,29 @@ import os
 import logging
 import re
 
-from influxdb_client import InfluxDBClient, Point, WritePrecision
-from influxdb_client.client.write_api import SYNCHRONOUS
+from influxdb import InfluxDBClient
 
 class Config():
 
     def __init__(self):
 
         # get env-vars from .env (via docker-compose)
-        self.influx_org = os.getenv("DOCKER_INFLUXDB_INIT_ORG")
-        self.influx_bucket = os.getenv("DOCKER_INFLUXDB_INIT_BUCKET")
-        self.influx_token = os.getenv("DOCKER_INFLUXDB_INIT_ADMIN_TOKEN")
+        self.influx_bucket = os.getenv("INFLUXDB_DB")
+        self.influx_user = os.getenv("INFLUXDB_USER")
+        self.influx_password = os.getenv("INFLUXDB_USER_PASSWORD")
         self.influx_url = os.getenv("INFLUXDB_URL")
     
     def connect(self):
 
         # establish a connection
         self.influx_client = InfluxDBClient(
-            url=self.influx_url,
-            token=self.influx_token,
-            org=self.influx_org
+            host=self.influx_url,
+            port=8086,
+            username=self.influx_user,
+            password=self.influx_password
         )
 
-        # instantiate the WriteAPI 
-        self.influx_write_api = self.influx_client.write_api(
-            write_options=SYNCHRONOUS
-        )
+        self.influx_client.switch_database(self.influx_bucket)
 
 class ReadSensor(Config):
 
@@ -50,16 +47,18 @@ class ReadSensor(Config):
             pitemperature = self.read_sensor()
 
             if pitemperature == float:
-                point = Point("temperature") \
-                    .tag("location", "raspberry") \
-                    .field("pi-temperature", pitemperature) \
-                    .time(datetime.utcnow(), WritePrecision.NS)
+                point = [{
+                    "measurement": "temperature",
+                    "tags": {
+                        "location": "raspberry"
+                    },
+                    "time": datetime.utcnow(),
+                    "fields": {
+                        "pi-temperature": pitemperature
+                    }
+                }]
 
-                self.influx_write_api.write(
-                    self.influx_bucket,
-                    self.influx_org,
-                    point
-                )
+                self.influx_client.write_points(point)
 
             # wait 60 seconds
             sleep(60)
