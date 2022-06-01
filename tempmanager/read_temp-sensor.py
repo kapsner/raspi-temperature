@@ -58,6 +58,11 @@ class ReadSensor(Config):
                     }
                 }]
 
+                logging.info("Logging temperature: {} at {}".format(
+                    point[0]["fields"]["pi-temperature"],
+                    point[0]["time"]
+                ))
+
                 self.influx_client.write_points(point)
 
             # wait 60 seconds
