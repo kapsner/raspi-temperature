@@ -46,7 +46,7 @@ class ReadSensor(Config):
         while True:
             pitemperature = self.read_sensor()
 
-            if pitemperature == float:
+            if type(pitemperature) == float:
                 point = [{
                     "measurement": "temperature",
                     "tags": {
