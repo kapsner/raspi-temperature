@@ -6,7 +6,6 @@ docker build -f Dockerfile -t tempmanager .
 # start framework for initial setup
 docker run --rm \
   -e INFLUXDB_DB=$INFLUXDB_DB \
-  -e INFLUXDB_ADMIN_ENABLED=true \
   -e INFLUXDB_ADMIN_USER=$INFLUXDB_ADMIN_USER \
   -e INFLUXDB_ADMIN_PASSWORD=$INFLUXDB_ADMIN_PASSWORD \
   -e INFLUXDB_USER=$INFLUXDB_USER \
