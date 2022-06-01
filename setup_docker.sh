@@ -14,5 +14,5 @@ docker run --rm \
   --env-file ./.env \
   -v ./influxdb-volume/data:/var/lib/influxdb \
   -v ./influxdb-volume/config:/etc/influxdb \
-  influxdb \
+  influxdb:1.8 \
   /init-influxdb.sh
