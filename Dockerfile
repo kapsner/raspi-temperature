@@ -39,6 +39,7 @@ RUN curl -sLo ~/miniconda.sh https://repo.anaconda.com/miniconda/Miniconda-lates
 RUN ~/miniconda.sh -b -p ~/miniconda  && \
     rm ~/miniconda.sh
 
+RUN conda config --add channels rpi
 RUN conda install -y python==${PYVERSION} && \
     conda clean -ya
 
@@ -49,11 +50,7 @@ ENV MAKEFLAGS="-j$(nproc)"
 # install some (python) prerequisites
 RUN yes | pip install \
     numpy \
-    pyyaml \
-    influxdb-client \
-    python-dotenv \
-    requests \
-    ruamel_yaml \
+    influxdb \
     setuptools \
     tqdm \
     virtualenv \
