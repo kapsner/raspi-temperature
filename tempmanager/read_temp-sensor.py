@@ -91,7 +91,7 @@ if __name__ == "__main__":
     sensor_id = os.getenv("TEMP_SENSOR_ID")
     if len(sensor_id) == 0 or sensor_id == "":
         raise Exception("No sensor_id found")
-    sensor_path = os.join.path(
+    sensor_path = os.path.join(
         "/sys/bus/w1/devices",
         sensor_id,
         "w1_slave"
