@@ -13,6 +13,6 @@ docker run --rm \
   -e INFLUXDB_USER_PASSWORD=$INFLUXDB_USER_PASSWORD \
   --env-file ./.env \
   -v ./influxdb-volume/data:/var/lib/influxdb \
-  -v ./influxdb-volume/config:/etc/influxdb
+  -v ./influxdb-volume/config:/etc/influxdb \
   influxdb \
   /init-influxdb.sh
