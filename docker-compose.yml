@@ -2,16 +2,16 @@
 version: '3.9'
 
 services:
-  # grafana:
-  #   image: grafana/grafana:8.5.3
-  #   container_name: grafana
-  #   depends_on:
-  #     - influxdb
-  #   restart: always
-  #   ports:
-  #     - 3000:3000
-  #   volumes:
-  #     - ./grafana-volume:/var/lib/grafana
+  grafana:
+    image: grafana/grafana:8.5.3
+    container_name: grafana
+    depends_on:
+      - influxdb
+    restart: always
+    ports:
+      - 3000:3000
+    volumes:
+      - ./grafana-volume:/var/lib/grafana
   
   influxdb:
     image: influxdb:1.8
