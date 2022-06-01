@@ -49,10 +49,8 @@ ENV MAKEFLAGS="-j$(nproc)"
 
 # install some (python) prerequisites
 RUN yes | pip install \
-    numpy \
     influxdb \
     setuptools \
-    tqdm \
     virtualenv \
     wheel
 
