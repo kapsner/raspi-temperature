@@ -28,9 +28,9 @@ The temperatur sensor DS1820 is to be connected as follows:
 * orange / red cables: connect 4,7 kOhm resistance between 3V3-interface of Raspberry (pin 1) and DQ of sensor (pin 2)
 
 <div class="row justify-content-center">
-<img src="src/rpi_temperature_1.png" width="240" />
-<img src="src/rpi_temperature_2.png" width="240" />
-<img src="src/rpi_temperature_3.png" width="240" />
+<img src="src/rpi_temperature_1.png" width="260" />
+<img src="src/rpi_temperature_2.png" width="260" />
+<img src="src/rpi_temperature_3.png" width="260" />
 </div>
 
 To configure the temperature sensor on the raspberry, you can run the script [`setup_raspberry.sh`](setup_raspberry.sh) (be sure to have admin privileges for the user that is running the script):
@@ -76,14 +76,14 @@ For the first setup of Grafana, you can access the Grafana web-interface with [h
 Go to "Configurartion > Data Sources" and add a new data source. Select "InfluxDB":
 
 <div class="row justify-content-center">
-<img src="src/grafana_1.png" width="240" />
-<img src="src/grafana_2.png" width="240" />
+<img src="src/grafana_1.png" width="260" />
+<img src="src/grafana_2.png" width="260" />
 </div>
 
 Then create an new "Dashboard > Add new panel". Select the "Data Source > InfluxDB" and switch to the "raw-query-mode". Enter the query `SELECT "pi-temperature" FROM "temperature"` and execute it by refreshing the panel:
 
-<img src="src/grafana_3.png" width="240" />
+<img src="src/grafana_3.png" width="600" />
 
 Save the dashboard and you are ready to monitor the temperature, captured by your raspberry pi.
 
-<img src="src/grafana_4.png" width="240" />
+<img src="src/grafana_4.png" width="600" />
