@@ -71,7 +71,7 @@ docker-compose up -d
 ./start.sh
 ```
 
-For the first setup of Grafana, you can access the Grafana web-interface with [http://ip-of-your-raspberry:3000](http://ip-of-your-raspberry:3000). The initial credentials are "admin:admin". Upon first login you are asked to change the password.
+For the first setup of Grafana, you can access the Grafana web-interface with http://ip-of-your-raspberry:3000. The initial credentials are "admin:admin". Upon first login you are asked to change the password.
 
 Go to "Configurartion > Data Sources" and add a new data source. Select "InfluxDB":
 
