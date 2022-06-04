@@ -17,3 +17,5 @@
 !/grafana-volume
 !/influxdb-volume
 !/tempmanager
+!/src
+!/src/*.png
