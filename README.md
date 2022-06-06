@@ -44,7 +44,7 @@ The script configures the required modules on the raspberry for the temperature 
 When the system has been rebooted, you read the temperature from the sensor. For our containerized setup, a environment variable `TEMP_SENSOR_ID` is set with the distinct ID of the connected hardware. To do so, you can run the script [`config_sensor.sh`](config_sensor.sh):
 
 ```bash
-config_sensor.sh
+./config_sensor.sh
 ```
 
 If everything works fine, you should see the ID of your sensor printed to the console as well as the current temperatur. The environment variable `TEMP_SENSOR_ID` with the appropriate value is appended to the file [`.env`](.env). (This script must be executed only once for the initial setup.)
@@ -56,10 +56,10 @@ More detailed instructions on the configuration of the sensor can also be found 
 To create the dockerized framework, run [`setup_docker.sh`](setup_docker.sh):
 
 ```bash
-setup_docker.sh
+./setup_docker.sh
 ```
 
-This script builds the container `tempmanager`, which is used to execute the python script [`tempmanager/read_temp-sensor.py`](tempmanager/read_temp-sensor.py). This script reads the temperatur from the host system and writes to the InfluxDB in the influxdb-container. Furthermore, the script also performs the initial setup of the influxdb container.
+This script builds the container `tempmanager`, which is used to execute the python script [`tempmanager/read_temp-sensor.py`](tempmanager/read_temp-sensor.py). This script reads the temperatur from the host system every 60 seconds and writes to the InfluxDB in the database in the influxdb-container. Furthermore, the script also performs the initial setup of the influxdb container.
 
 
 ## Usage
