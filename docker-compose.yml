@@ -47,4 +47,4 @@ services:
       - INFLUXDB_URL=$INFLUXDB_URL
       - TEMP_SENSOR_ID=$TEMP_SENSOR_ID
     tty: true # to keep container open with tail -f /dev/null
-    #entrypoint: python ./tempmanager/read_temp-sensor.py
+    entrypoint: bash -c "python ./tempmanager/read_temp-sensor.py"
