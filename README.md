@@ -61,6 +61,7 @@ To create the dockerized framework, run [`setup_docker.sh`](setup_docker.sh):
 
 This script builds the container `tempmanager`, which is used to execute the python script [`tempmanager/read_temp-sensor.py`](tempmanager/read_temp-sensor.py). This script reads the temperatur from the host system every 60 seconds and writes to the InfluxDB in the database in the influxdb-container. Furthermore, the script also performs the initial setup of the influxdb container.
 
+Set the environment variables `INFLUXDB_ADMIN_USER`, `INFLUXDB_ADMIN_PASSWORD`, `INFLUXDB_USER`, and `INFLUXDB_PASSWORD` in the file [`.env`](.env).
 
 ## Usage
 
