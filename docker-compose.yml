@@ -7,12 +7,12 @@ services:
     container_name: grafana
     depends_on:
       - influxdb
-    restart: always
     ports:
       - 3000:3000
     volumes:
       - ./grafana-volume:/var/lib/grafana
     user: $MY_UID
+    restart: unless-stopped
   
   influxdb:
     image: influxdb:1.8
@@ -28,7 +28,7 @@ services:
       - INFLUXDB_USER=$INFLUXDB_USER
       - INFLUXDB_USER_PASSWORD=$INFLUXDB_USER_PASSWORD
       - INFLUXDB_DB=$INFLUXDB_DB
-    restart: always
+    restart: unless-stopped
   
   tempmanager:
     image: tempmanager:latest
@@ -48,3 +48,4 @@ services:
       - TEMP_SENSOR_ID=$TEMP_SENSOR_ID
     tty: true # to keep container open with tail -f /dev/null
     entrypoint: bash -c "python ./tempmanager/read_temp-sensor.py"
+    restart: unless-stopped
