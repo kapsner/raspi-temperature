@@ -1,8 +1,8 @@
 # raspi-temperature
 
-This repo contains instructions and scripts to setup a DS1820 temperatur sensor on a Raspberry Pi Model B using docker, influxdb and grafana for visualization.
+This repo contains instructions and scripts to setup a DS1820 temperature sensor on a Raspberry Pi Model B using docker, influxdb and grafana for visualization.
 
-The original instructions I followed almost 10 years ago can be found [here](https://www.kompf.de/weather/pionewiremini.html) - some part, especially the python part to read the temperatur from the sensor, is still taken from there.
+The original instructions I followed almost 10 years ago can be found [here](https://www.kompf.de/weather/pionewiremini.html) - some part, especially the python part to read the temperature from the sensor, is still taken from there.
 
 However, the setup has been revised in 2022 to A) move the deployment to docker containers and B) to use [InfluxDB](https://www.influxdata.com/) as a time-series database (instead of a round-robin-database) and [Grafana](https://www.influxdata.com/) for visualizing the captured temperature data.
 
